@@ -40,13 +40,15 @@ public final class ScannerViewController: UIViewController {
         //        (NSLocalizedString("wescan.scanning.cancel", tableName: nil, bundle: Bundle(for: ScannerViewController.self), value: "Cancel", comment: "The cancel button"), for: .normal)
 //        button.translatesAutoresizingMaskIntoConstraints = false
 //        button.addTarget(self, action: #selector(cancelImageScannerController), for: .touchUpInside)
+        button.action = #selector(cancelImageScannerController)
+        button.tintColor = navigationController?.navigationBar.tintColor
         return button
     }()
 
     private lazy var autoScanButton: UIBarButtonItem = {
         let title = NSLocalizedString("wescan.scanning.auto", tableName: nil, bundle: Bundle(for: ScannerViewController.self), value: "Auto", comment: "The auto button state")
         let button = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(toggleAutoScan))
-        button.tintColor = .white
+        button.tintColor = navigationController?.navigationBar.tintColor
 
         return button
     }()
@@ -54,7 +56,7 @@ public final class ScannerViewController: UIViewController {
     private lazy var flashButton: UIBarButtonItem = {
         let image = UIImage(systemName: "bolt.fill", named: "flash", in: Bundle(for: ScannerViewController.self), compatibleWith: nil)
         let button = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(toggleFlash))
-        button.tintColor = .white
+        button.tintColor = navigationController?.navigationBar.tintColor
 
         return button
     }()
@@ -90,6 +92,7 @@ public final class ScannerViewController: UIViewController {
         setNeedsStatusBarAppearanceUpdate()
 
         CaptureSession.current.isEditing = false
+        CaptureSession.current.isAutoScanEnabled = false
         quadView.removeQuadrilateral()
         captureSessionManager?.start()
         UIApplication.shared.isIdleTimerDisabled = true
@@ -124,14 +127,12 @@ public final class ScannerViewController: UIViewController {
         quadView.translatesAutoresizingMaskIntoConstraints = false
         quadView.editable = false
         view.addSubview(quadView)
-        view.addSubview(cancelButton)
+//        view.addSubview(cancelButton)
         view.addSubview(shutterButton)
         view.addSubview(activityIndicator)
     }
 
     private func setupNavigationBar() {
-        navigationItem.setLeftBarButton(flashButton, animated: false)
-        navigationItem.setRightBarButton(autoScanButton, animated: false)
         navigationItem.setLeftBarButton(cancelButton, animated: false)
         navigationItem.setRightBarButton(flashButton, animated: false)
 
