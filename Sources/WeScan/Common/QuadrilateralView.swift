@@ -27,7 +27,6 @@ final class QuadrilateralView: UIView {
         layer.lineWidth = 1.0
         layer.opacity = 1.0
         layer.isHidden = true
-
         return layer
     }()
 
