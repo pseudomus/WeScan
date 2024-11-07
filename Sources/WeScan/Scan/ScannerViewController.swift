@@ -89,7 +89,7 @@ public final class ScannerViewController: UIViewController {
 
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setNeedsStatusBarAppearanceUpdate()
+//        setNeedsStatusBarAppearanceUpdate()
 
         CaptureSession.current.isEditing = false
         CaptureSession.current.isAutoScanEnabled = false
