@@ -36,7 +36,7 @@ public final class ScannerViewController: UIViewController {
     }()
 
     private lazy var cancelButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelImageScannerController))
+        let button = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelImageScannerController))
         //        (NSLocalizedString("wescan.scanning.cancel", tableName: nil, bundle: Bundle(for: ScannerViewController.self), value: "Cancel", comment: "The cancel button"), for: .normal)
 //        button.translatesAutoresizingMaskIntoConstraints = false
 //        button.addTarget(self, action: #selector(cancelImageScannerController), for: .touchUpInside)
@@ -55,9 +55,8 @@ public final class ScannerViewController: UIViewController {
 
     private lazy var flashButton: UIBarButtonItem = {
         let image = UIImage(systemName: "bolt.fill", named: "flash", in: Bundle(for: ScannerViewController.self), compatibleWith: nil)
-        let button = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(toggleFlash))
+        let button = UIBarButtonItem(image: image, style: .done     , target: self, action: #selector(toggleFlash))
         button.tintColor = navigationController?.navigationBar.tintColor
-
         return button
     }()
 
