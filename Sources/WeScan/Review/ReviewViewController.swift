@@ -105,9 +105,6 @@ final class ReviewViewController: UIViewController {
 
     private func setupToolbar() {
         guard enhancedImageIsAvailable else { return }
-
-        navigationController?.toolbar.barStyle = .blackTranslucent
-
         let fixedSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolbarItems = [fixedSpace, enhanceButton, flexibleSpace, rotateButton, fixedSpace]
