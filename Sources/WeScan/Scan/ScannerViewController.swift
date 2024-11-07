@@ -97,7 +97,7 @@ public final class ScannerViewController: UIViewController {
         captureSessionManager?.start()
         UIApplication.shared.isIdleTimerDisabled = true
 
-        navigationController?.navigationBar.barStyle = .blackTranslucent
+//        navigationController?.navigationBar.barStyle = .blackTranslucent
     }
 
     override public func viewDidLayoutSubviews() {
@@ -133,19 +133,18 @@ public final class ScannerViewController: UIViewController {
     }
 
     private func setupNavigationBar() {
-        navigationItem.setLeftBarButton(cancelButton, animated: false)
-        navigationItem.setRightBarButton(flashButton, animated: false)
+        navigationItem.setLeftBarButton(cancelButton, animated: true)
+        navigationItem.setRightBarButton(flashButton, animated: true)
 
         if UIImagePickerController.isFlashAvailable(for: .rear) == false {
             let flashOffImage = UIImage(systemName: "bolt.slash.fill", named: "flashUnavailable", in: Bundle(for: ScannerViewController.self), compatibleWith: nil)
             flashButton.image = flashOffImage
-            flashButton.tintColor = UIColor.lightGray
+            flashButton.tintColor = UIColor.gray
         }
     }
 
     private func setupConstraints() {
         var quadViewConstraints = [NSLayoutConstraint]()
-        var cancelButtonConstraints = [NSLayoutConstraint]()
         var shutterButtonConstraints = [NSLayoutConstraint]()
         var activityIndicatorConstraints = [NSLayoutConstraint]()
 
@@ -168,8 +167,7 @@ public final class ScannerViewController: UIViewController {
         ]
 
         if #available(iOS 11.0, *) {
-//            cancelButtonConstraints = [
-//                cancelButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 24.0),
+   //                cancelButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 24.0),
 //                view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: cancelButton.bottomAnchor, constant: (65.0 / 2) - 10.0)
 //            ]
 
@@ -185,7 +183,7 @@ public final class ScannerViewController: UIViewController {
             shutterButtonConstraints.append(shutterButtonBottomConstraint)
         }
 
-        NSLayoutConstraint.activate(quadViewConstraints + cancelButtonConstraints + shutterButtonConstraints + activityIndicatorConstraints)
+        NSLayoutConstraint.activate(quadViewConstraints + shutterButtonConstraints + activityIndicatorConstraints)
     }
 
     // MARK: - Tap to Focus
